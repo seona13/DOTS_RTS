@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 
@@ -33,28 +34,63 @@ public class UnitSelectionManager : MonoBehaviour
             Vector2 selectionEndMousePosition = Input.mousePosition;
 
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            
+            // Deselected all currently-selected units
             EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected>().Build(entityManager);
-
             NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
             for (int i = 0; i < entityArray.Length; i++)
             {
                 entityManager.SetComponentEnabled<Selected>(entityArray[i], false);
             }
-            
-            entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform, Unit>().WithPresent<Selected>().Build(entityManager);
 
+            // Test to see if multiple or single selection
             Rect selectionAreaRect = GetSelectionAreaRect();
+            float selectionAreaSize = selectionAreaRect.width + selectionAreaRect.height;
+            float multipleSelectionSizeMin = 40f;
+            bool isMultipleSelection = selectionAreaSize > multipleSelectionSizeMin;
 
-            entityArray = entityQuery.ToEntityArray(Allocator.Temp);
-            NativeArray<LocalTransform> localTransformArray = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
-            for (int i = 0; i < localTransformArray.Length; i++)
+            if (isMultipleSelection)
             {
-                LocalTransform unitLocalTransform = localTransformArray[i];
-                Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(unitLocalTransform.Position);
-                if (selectionAreaRect.Contains(unitScreenPosition))
+                // Check which units are inside the selection rectangle and select them
+                entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform, Unit>().WithPresent<Selected>().Build(entityManager);
+                entityArray = entityQuery.ToEntityArray(Allocator.Temp);
+                NativeArray<LocalTransform> localTransformArray = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
+                for (int i = 0; i < localTransformArray.Length; i++)
                 {
-                    // Unit is inside the selection area
-                    entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
+                    LocalTransform unitLocalTransform = localTransformArray[i];
+                    Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(unitLocalTransform.Position);
+                    if (selectionAreaRect.Contains(unitScreenPosition))
+                    {
+                        // Unit is inside the selection area
+                        entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
+                    }
+                }
+            } else
+            {
+                // Single selection
+                entityQuery = entityManager.CreateEntityQuery(typeof(PhysicsWorldSingleton));
+                PhysicsWorldSingleton physicsWorldSingleton = entityQuery.GetSingleton<PhysicsWorldSingleton>();
+                CollisionWorld collisionWorld = physicsWorldSingleton.CollisionWorld;
+                UnityEngine.Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                int unitsLayer = 6;
+                RaycastInput raycastInput = new RaycastInput
+                {
+                    Start = cameraRay.GetPoint(0f),
+                    End = cameraRay.GetPoint(9999f),
+                    Filter = new CollisionFilter
+                    {
+                        CollidesWith = 1u << unitsLayer, // only interact with the units layer
+                        BelongsTo = ~0u, // all layers
+                        GroupIndex = 0
+                    }
+                };
+                if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit raycastHit))
+                {
+                    if (entityManager.HasComponent<Unit>(raycastHit.Entity))
+                    {
+                        // Hit a unit
+                        entityManager.SetComponentEnabled<Selected>(raycastHit.Entity, true);
+                    }
                 }
             }
 
