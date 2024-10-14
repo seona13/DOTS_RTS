@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 162
+  controlID: 26
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 161
+  controlID: 25
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -205,7 +205,7 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 19}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 3
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 186
+  controlID: 50
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -394,13 +394,13 @@ MonoBehaviour:
     m_Text: Systems
     m_Image: {fileID: 2800000, guid: 982c7790ddc925b43b3c06838f818a0d, type: 3}
     m_Tooltip: 
-    m_TextWithWhitespace: "Unity.Entities.Editor.SystemScheduleWindow\u200B"
+    m_TextWithWhitespace: "Systems\u200B"
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 73
+    y: 79
     width: 1068
-    height: 428
+    height: 420
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -577,7 +577,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 71620
+  m_LastSelectedObjectID: -72262
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -745,7 +745,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -763,7 +764,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: fa490000
     m_LastClickedID: 18938
-    m_ExpandedIDs: 000000000ec5000010c5000012c5000014c5000016c5000018c500001ac500001cc500001ec50000
+    m_ExpandedIDs: 0000000076c5000078c500007ac500007cc500007ec5000080c5000082c5000084c5000086c5000088c50000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -792,7 +793,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000ec5000010c5000012c5000014c5000016c5000018c500001ac500001cc500001ec50000
+    m_ExpandedIDs: 0000000076c5000078c500007ac500007cc500007ec5000080c5000082c5000084c5000086c5000088c50000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1497,9 +1498,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.24572664, y: 0.74718815, z: -0.49200433, w: -0.37317526}
   m_Size:
-    m_Target: 14.221005
+    m_Target: 27.52166
     speed: 2
-    m_Value: 14.221005
+    m_Value: 27.52166
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1571,7 +1572,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a660fdff9666fdff181bffff281bffff901fffff
+      m_ExpandedIDs: d2faffffd4faffff42c2000048c2000072c20000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

@@ -98,6 +98,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldierUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 5743475007365070157, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: range
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743475007365070157, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: targetFaction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5875076279742794122, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: faction
       value: 0
@@ -155,6 +163,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       insertIndex: 4
       addedObject: {fileID: 4865458090421740474}
+    - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 7555769835015937115}
   m_SourcePrefab: {fileID: 100100000, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
 --- !u!1 &451684142005741863 stripped
 GameObject:
@@ -187,6 +198,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209b0522a09306b4aab90e4dcc9dee26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7555769835015937115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451684142005741863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edcf1eaee5b16749a3f9b771a023db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerMax: 0.2
 --- !u!4 &4490729665449070707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085540531835963527, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}

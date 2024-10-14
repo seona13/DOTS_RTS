@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 8085540531835963527}
   - component: {fileID: 5875076279742794122}
   - component: {fileID: 152296822292407902}
+  - component: {fileID: -8707692920773423379}
+  - component: {fileID: 5743475007365070157}
   - component: {fileID: 8440757877256612226}
   - component: {fileID: 1624492227642213771}
   m_Layer: 6
@@ -134,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b31a0fb3434d364d95e2660881e6ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 0
 --- !u!114 &152296822292407902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +151,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 15
+--- !u!114 &-8707692920773423379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198120190131335635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185008b39f0a17d4a92fc4ad5c804356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5743475007365070157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198120190131335635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9854a7b43bf1faf47a80a20c1f6f5bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  targetFaction: 0
+  timerMax: 0.2
 --- !u!136 &8440757877256612226
 CapsuleCollider:
   m_ObjectHideFlags: 0
