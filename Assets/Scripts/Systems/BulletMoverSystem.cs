@@ -20,6 +20,13 @@ partial struct BulletMoverSystem : ISystem
                 RefRO<Bullet>,
                 RefRO<Target>>().WithEntityAccess())
         {
+            if (target.ValueRO.targetEntity == Entity.Null)
+            {
+                // No target found - bullet no longer relevant
+                entityCommandBuffer.DestroyEntity(entity);
+                continue;
+            }
+
             LocalTransform targetLocalTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
 
             float distanceBeforeSq = math.distancesq(localTransform.ValueRO.Position, targetLocalTransform.Position);
