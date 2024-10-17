@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6621309265709846092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053044529858089035}
+  m_Layer: 6
+  m_Name: BulletSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053044529858089035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621309265709846092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.271, y: 1.913, z: 1.977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4490729665449070707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9185638061874337448
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5743475007365070157, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: range
-      value: 7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5743475007365070157, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: targetFaction
@@ -156,6 +187,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8085540531835963527, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8102976149784487704}
+    - targetCorrespondingSourceObject: {fileID: 8085540531835963527, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1053044529858089035}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       insertIndex: 3
@@ -212,6 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerMax: 0.2
   damageAmount: 5
+  attackDistance: 12
+  bulletSpawnPositionTransform: {fileID: 1053044529858089035}
 --- !u!4 &4490729665449070707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085540531835963527, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
