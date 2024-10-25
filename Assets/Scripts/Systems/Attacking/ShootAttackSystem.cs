@@ -6,6 +6,13 @@ using Unity.Transforms;
 partial struct ShootAttackSystem : ISystem
 {
     [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<EntitiesReferences>();
+    }
+
+
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         EntitiesReferences entitiesReferences = SystemAPI.GetSingleton<EntitiesReferences>();
