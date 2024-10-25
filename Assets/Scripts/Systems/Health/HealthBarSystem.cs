@@ -7,7 +7,7 @@ using UnityEngine;
 [UpdateInGroup(typeof(LateSimulationSystemGroup))]
 partial struct HealthBarSystem : ISystem
 {
-    [BurstCompile]
+    //[BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         Vector3 cameraForward = Vector3.zero;
