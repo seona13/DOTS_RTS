@@ -18,5 +18,15 @@ partial struct ResetTargetSystem : ISystem
                 }
             }
         }
+        foreach (RefRW<TargetOverride> targetOverride in SystemAPI.Query<RefRW<TargetOverride>>())
+        {
+            if (targetOverride.ValueRW.targetEntity != Entity.Null)
+            {
+                if (SystemAPI.Exists(targetOverride.ValueRO.targetEntity) == false || SystemAPI.HasComponent<LocalTransform>(targetOverride.ValueRO.targetEntity) == false)
+                {
+                    targetOverride.ValueRW.targetEntity = Entity.Null;
+                }
+            }
+        }
     }
 }

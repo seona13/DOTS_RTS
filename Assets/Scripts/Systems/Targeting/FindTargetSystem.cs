@@ -17,11 +17,13 @@ partial struct FindTargetSystem : ISystem
         foreach ((
             RefRO<LocalTransform> localTransform,
             RefRW<FindTarget> findTarget,
-            RefRW<Target> target)
+            RefRW<Target> target,
+            RefRO<TargetOverride> targetOverride)
             in SystemAPI.Query<
                 RefRO<LocalTransform>,
                 RefRW<FindTarget>,
-                RefRW<Target>>())
+                RefRW<Target>,
+                RefRO<TargetOverride>>())
         {
             findTarget.ValueRW.timer -= SystemAPI.Time.DeltaTime;
             if (findTarget.ValueRO.timer > 0f)
@@ -30,6 +32,13 @@ partial struct FindTargetSystem : ISystem
                 continue;
             }
             findTarget.ValueRW.timer = findTarget.ValueRO.timerMax;
+
+            if (targetOverride.ValueRO.targetEntity != Entity.Null)
+            {
+                // We have a target override - use it and move on.
+                target.ValueRW.targetEntity = targetOverride.ValueRO.targetEntity;
+                continue;
+            }
 
             distanceHitList.Clear();
             CollisionFilter collisionFilter = new CollisionFilter
