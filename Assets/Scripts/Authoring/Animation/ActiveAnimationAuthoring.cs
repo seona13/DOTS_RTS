@@ -7,7 +7,7 @@ public struct ActiveAnimation : IComponentData
 {
     public int frame;
     public float frameTimer;
-    public BlobAssetReference<AnimationData> animationDataBlobAssetReference;
+    public AnimationDataSO.AnimationType activeAnimationType;
 }
 
 public class ActiveAnimationAuthoring : MonoBehaviour
