@@ -1,12 +1,22 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Rendering;
+using UnityEngine;
 
 partial struct ActiveAnimationSystem : ISystem
 {
     [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<AnimationDataHolder>();
+    }
+
+
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+        AnimationDataHolder animationDataHolder = SystemAPI.GetSingleton<AnimationDataHolder>();
+
         foreach ((
             RefRW<ActiveAnimation> activeAnimation,
             RefRW<MaterialMeshInfo> materialMeshInfo)
@@ -14,22 +24,27 @@ partial struct ActiveAnimationSystem : ISystem
                 RefRW<ActiveAnimation>,
                 RefRW<MaterialMeshInfo>>())
         {
-            activeAnimation.ValueRW.frameTimer += SystemAPI.Time.DeltaTime;
-            if (activeAnimation.ValueRW.frameTimer > activeAnimation.ValueRW.frameTimerMax)
+            if (activeAnimation.ValueRO.animationDataBlobAssetReference.IsCreated == false)
             {
-                activeAnimation.ValueRW.frameTimer -= activeAnimation.ValueRW.frameTimerMax;
-                activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % activeAnimation.ValueRW.frameMax;
+                activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierIdle;
+            }
 
-                switch (activeAnimation.ValueRW.frame)
-                {
-                    default:
-                    case 0:
-                        materialMeshInfo.ValueRW.MeshID = activeAnimation.ValueRO.frame0;
-                        break;
-                    case 1:
-                        materialMeshInfo.ValueRW.MeshID = activeAnimation.ValueRO.frame1;
-                        break;
-                }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierIdle;
+            }
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierWalk;
+            }
+
+            activeAnimation.ValueRW.frameTimer += SystemAPI.Time.DeltaTime;
+            if (activeAnimation.ValueRW.frameTimer > activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameTimerMax)
+            {
+                activeAnimation.ValueRW.frameTimer -= activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameTimerMax;
+                activeAnimation.ValueRW.frame = (activeAnimation.ValueRW.frame + 1) % activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameMax;
+
+                materialMeshInfo.ValueRW.MeshID = activeAnimation.ValueRO.animationDataBlobAssetReference.Value.batchMeshIdBlobArray[activeAnimation.ValueRO.frame];
             }
         }
     }
