@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1010055198746714252}
   - component: {fileID: 1211535398110273827}
   - component: {fileID: 2340594049184657568}
+  - component: {fileID: 1473040696725653533}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1473040696725653533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293004877002960720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6635d415274182c46998c07846a4c689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextAnimationType: 1
 --- !u!1 &5198120190131335635
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +117,8 @@ GameObject:
   - component: {fileID: -5560017545888773923}
   - component: {fileID: 101058653036098954}
   - component: {fileID: -6072056879961206897}
+  - component: {fileID: 1391912770195498825}
+  - component: {fileID: 2676382156069130568}
   - component: {fileID: 8440757877256612226}
   - component: {fileID: 1624492227642213771}
   - component: {fileID: -3841590340940006188}
@@ -236,6 +252,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthAmount: 100
   healthAmountMax: 100
+--- !u!114 &1391912770195498825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198120190131335635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c79fe6e4807c5647bd8ff4567579131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshGameObject: {fileID: 1293004877002960720}
+--- !u!114 &2676382156069130568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198120190131335635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17166caf37a758d4596431c587955098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAnimationType: 0
+  walkAnimationType: 0
 --- !u!136 &8440757877256612226
 CapsuleCollider:
   m_ObjectHideFlags: 0

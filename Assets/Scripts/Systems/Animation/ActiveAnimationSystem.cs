@@ -24,15 +24,6 @@ partial struct ActiveAnimationSystem : ISystem
                 RefRW<ActiveAnimation>,
                 RefRW<MaterialMeshInfo>>())
         {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                activeAnimation.ValueRW.nextAnimationType = AnimationDataSO.AnimationType.SoldierIdle;
-            }
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                activeAnimation.ValueRW.nextAnimationType = AnimationDataSO.AnimationType.SoldierWalk;
-            }
-
             ref AnimationData animationData = ref animationDataHolder.animationDataBlobArrayBlobAssetReference.Value[(int)activeAnimation.ValueRW.activeAnimationType];
             activeAnimation.ValueRW.frameTimer += SystemAPI.Time.DeltaTime;
             if (activeAnimation.ValueRW.frameTimer > animationData.frameTimerMax)

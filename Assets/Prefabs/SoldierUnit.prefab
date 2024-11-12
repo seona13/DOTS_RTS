@@ -125,6 +125,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2676382156069130568, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: idleAnimationType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676382156069130568, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: walkAnimationType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: m_Name
       value: SoldierUnit
