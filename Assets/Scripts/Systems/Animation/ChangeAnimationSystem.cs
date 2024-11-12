@@ -17,6 +17,15 @@ partial struct ChangeAnimationSystem : ISystem
                 RefRW<ActiveAnimation>,
                 RefRW<MaterialMeshInfo>>())
         {
+            if (activeAnimation.ValueRO.activeAnimationType == AnimationDataSO.AnimationType.SoldierShoot)
+            {
+                continue; // Don't interrupt the shoot animation
+            }
+            if (activeAnimation.ValueRO.activeAnimationType == AnimationDataSO.AnimationType.zombieAttack)
+            {
+                continue; // Don't interrupt the zombie attack animation
+            }
+
             if (activeAnimation.ValueRO.activeAnimationType != activeAnimation.ValueRO.nextAnimationType)
             {
                 activeAnimation.ValueRW.frame = 0;

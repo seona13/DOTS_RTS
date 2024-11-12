@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: walkAnimationType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2676382156069130568, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: meleeAttackAnimationType
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: m_Name
       value: ZombieUnit
