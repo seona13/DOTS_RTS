@@ -10,32 +10,40 @@ partial struct ChangeAnimationSystem : ISystem
     {
         AnimationDataHolder animationDataHolder = SystemAPI.GetSingleton<AnimationDataHolder>();
 
-        foreach ((
-            RefRW<ActiveAnimation> activeAnimation,
-            RefRW<MaterialMeshInfo> materialMeshInfo)
-            in SystemAPI.Query<
-                RefRW<ActiveAnimation>,
-                RefRW<MaterialMeshInfo>>())
+        ChangeAnimationJob changeAnimationJob = new ChangeAnimationJob
         {
-            if (activeAnimation.ValueRO.activeAnimationType == AnimationDataSO.AnimationType.SoldierShoot)
-            {
-                continue; // Don't interrupt the shoot animation
-            }
-            if (activeAnimation.ValueRO.activeAnimationType == AnimationDataSO.AnimationType.zombieAttack)
-            {
-                continue; // Don't interrupt the zombie attack animation
-            }
+            animationDataBlobArrayBlobAssetReference = animationDataHolder.animationDataBlobArrayBlobAssetReference,
+        };
+        changeAnimationJob.ScheduleParallel();
+    }
+}
 
-            if (activeAnimation.ValueRO.activeAnimationType != activeAnimation.ValueRO.nextAnimationType)
-            {
-                activeAnimation.ValueRW.frame = 0;
-                activeAnimation.ValueRW.frameTimer = 0f;
-                activeAnimation.ValueRW.activeAnimationType = activeAnimation.ValueRO.nextAnimationType;
 
-                ref AnimationData animationData = ref animationDataHolder.animationDataBlobArrayBlobAssetReference.Value[(int)activeAnimation.ValueRW.activeAnimationType];
+[BurstCompile]
+public partial struct ChangeAnimationJob : IJobEntity
+{
+    public BlobAssetReference<BlobArray<AnimationData>> animationDataBlobArrayBlobAssetReference;
 
-                materialMeshInfo.ValueRW.MeshID = animationData.batchMeshIdBlobArray[0];
-            }
+    public void Execute(ref ActiveAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
+    {
+        if (activeAnimation.activeAnimationType == AnimationDataSO.AnimationType.SoldierShoot)
+        {
+            return; // Don't interrupt the shoot animation
+        }
+        if (activeAnimation.activeAnimationType == AnimationDataSO.AnimationType.zombieAttack)
+        {
+            return; // Don't interrupt the zombie attack animation
+        }
+
+        if (activeAnimation.activeAnimationType != activeAnimation.nextAnimationType)
+        {
+            activeAnimation.frame = 0;
+            activeAnimation.frameTimer = 0f;
+            activeAnimation.activeAnimationType = activeAnimation.nextAnimationType;
+
+            ref AnimationData animationData = ref animationDataBlobArrayBlobAssetReference.Value[(int)activeAnimation.activeAnimationType];
+
+            materialMeshInfo.MeshID = animationData.batchMeshIdBlobArray[0];
         }
     }
 }
