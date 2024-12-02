@@ -45,12 +45,7 @@ public partial struct ActiveAnimationJob : IJobEntity
             materialMeshInfo.Mesh = animationData.intMeshIdBlobArray[activeAnimation.frame];
 
             if (activeAnimation.frame == 0 &&
-                activeAnimation.activeAnimationType == AnimationDataSO.AnimationType.SoldierShoot)
-            {
-                activeAnimation.activeAnimationType = AnimationDataSO.AnimationType.None;
-            }
-            if (activeAnimation.frame == 0 &&
-                activeAnimation.activeAnimationType == AnimationDataSO.AnimationType.zombieAttack)
+                AnimationDataSO.IsAnimationUninterruptible(activeAnimation.activeAnimationType))
             {
                 activeAnimation.activeAnimationType = AnimationDataSO.AnimationType.None;
             }

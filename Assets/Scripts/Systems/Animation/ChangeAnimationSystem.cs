@@ -33,13 +33,9 @@ public partial struct ChangeAnimationJob : IJobEntity
 
     public void Execute(ref ActiveAnimation activeAnimation, ref MaterialMeshInfo materialMeshInfo)
     {
-        if (activeAnimation.activeAnimationType == AnimationDataSO.AnimationType.SoldierShoot)
+        if (AnimationDataSO.IsAnimationUninterruptible(activeAnimation.activeAnimationType))
         {
-            return; // Don't interrupt the shoot animation
-        }
-        if (activeAnimation.activeAnimationType == AnimationDataSO.AnimationType.zombieAttack)
-        {
-            return; // Don't interrupt the zombie attack animation
+            return; // Don't interrupt this animation
         }
 
         if (activeAnimation.activeAnimationType != activeAnimation.nextAnimationType)
