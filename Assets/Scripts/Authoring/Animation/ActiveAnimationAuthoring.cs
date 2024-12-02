@@ -21,7 +21,6 @@ public class ActiveAnimationAuthoring : MonoBehaviour
         public override void Bake(ActiveAnimationAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-            EntitiesGraphicsSystem entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             AddComponent(entity, new ActiveAnimation
             {
                 nextAnimationType = authoring.nextAnimationType,
