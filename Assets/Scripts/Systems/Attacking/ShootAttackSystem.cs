@@ -59,10 +59,13 @@ partial struct ShootAttackSystem : ISystem
             }
             shootAttack.ValueRW.timer = shootAttack.ValueRO.timerMax;
 
-            RefRW<TargetOverride> enemyTargetOverride = SystemAPI.GetComponentRW<TargetOverride>(target.ValueRO.targetEntity);
-            if (enemyTargetOverride.ValueRO.targetEntity == Entity.Null)
+            if (SystemAPI.HasComponent<TargetOverride>(target.ValueRO.targetEntity))
             {
-                enemyTargetOverride.ValueRW.targetEntity = entity;
+                RefRW<TargetOverride> enemyTargetOverride = SystemAPI.GetComponentRW<TargetOverride>(target.ValueRO.targetEntity);
+                if (enemyTargetOverride.ValueRO.targetEntity == Entity.Null)
+                {
+                    enemyTargetOverride.ValueRW.targetEntity = entity;
+                }
             }
 
             Entity bulletEntity = state.EntityManager.Instantiate(entitiesReferences.bulletPrefabEntity);

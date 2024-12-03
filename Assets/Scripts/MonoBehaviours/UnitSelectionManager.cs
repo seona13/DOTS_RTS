@@ -127,7 +127,7 @@ public class UnitSelectionManager : MonoBehaviour
                 End = cameraRay.GetPoint(9999f),
                 Filter = new CollisionFilter
                 {
-                    CollidesWith = 1u << GameAssets.UNITS_LAYER, // only interact with the units layer
+                    CollidesWith = 1u << GameAssets.UNITS_LAYER | 1u << GameAssets.BUILDINGS_LAYER, // only interact with the units and buildings layers
                     BelongsTo = ~0u, // all layers
                     GroupIndex = 0
                 }
@@ -137,13 +137,13 @@ public class UnitSelectionManager : MonoBehaviour
 
             if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit raycastHit))
             {
-                if (entityManager.HasComponent<Unit>(raycastHit.Entity))
+                if (entityManager.HasComponent<Faction>(raycastHit.Entity))
                 {
-                    // Hit a unit
-                    Unit unit = entityManager.GetComponentData<Unit>(raycastHit.Entity);
-                    if (unit.faction == Faction.Zombie)
+                    // Hit something with a Faction
+                    Faction faction = entityManager.GetComponentData<Faction>(raycastHit.Entity);
+                    if (faction.factionType == FactionType.Zombie)
                     {
-                        // Right-clicking on a Zombie
+                        // Right-clicking on an enemy
                         isAttackingSingleTarget = true;
 
                         entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected>().WithPresent<TargetOverride>().Build(entityManager);
