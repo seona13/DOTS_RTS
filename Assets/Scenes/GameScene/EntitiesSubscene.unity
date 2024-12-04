@@ -1145,6 +1145,7 @@ GameObject:
   - component: {fileID: 1822991142}
   - component: {fileID: 1822991141}
   - component: {fileID: 1822991145}
+  - component: {fileID: 1822991146}
   - component: {fileID: 1822991140}
   m_Layer: 7
   m_Name: BuildingZombieSpawner
@@ -1273,6 +1274,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   factionType: 1
+--- !u!114 &1822991146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822991137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab4e5528ee7ada4fa5794bba1f764f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 1
 --- !u!1001 &1849993906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1381,6 +1395,7 @@ GameObject:
   - component: {fileID: 1897710364}
   - component: {fileID: 1897710363}
   - component: {fileID: 1897710362}
+  - component: {fileID: 1897710366}
   - component: {fileID: 1897710357}
   m_Layer: 7
   m_Name: BuildingTower
@@ -1535,6 +1550,19 @@ MonoBehaviour:
   range: 20
   targetFaction: 1
   timerMax: 0.2
+--- !u!114 &1897710366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897710355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab4e5528ee7ada4fa5794bba1f764f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 2
 --- !u!1 &1960373473
 GameObject:
   m_ObjectHideFlags: 0
