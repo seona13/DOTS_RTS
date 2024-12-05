@@ -89,16 +89,16 @@ public class UnitSelectionManager : MonoBehaviour
                     End = cameraRay.GetPoint(9999f),
                     Filter = new CollisionFilter
                     {
-                        CollidesWith = 1u << GameAssets.UNITS_LAYER, // only interact with the units layer
+                        CollidesWith = 1u << GameAssets.UNITS_LAYER | 1u << GameAssets.BUILDINGS_LAYER, // only interact with the units and buildings layers
                         BelongsTo = ~0u, // all layers
                         GroupIndex = 0
                     }
                 };
                 if (collisionWorld.CastRay(raycastInput, out Unity.Physics.RaycastHit raycastHit))
                 {
-                    if (entityManager.HasComponent<Unit>(raycastHit.Entity) && entityManager.HasComponent<Selected>(raycastHit.Entity))
+                    if (entityManager.HasComponent<Selected>(raycastHit.Entity))
                     {
-                        // Hit a unit
+                        // Hit something selectable
                         entityManager.SetComponentEnabled<Selected>(raycastHit.Entity, true);
                         Selected selected = entityManager.GetComponentData<Selected>(raycastHit.Entity);
                         selected.onSelected = true;
@@ -184,6 +184,19 @@ public class UnitSelectionManager : MonoBehaviour
                 entityQuery.CopyFromComponentDataArray(moveOverrideArray);
                 entityQuery.CopyFromComponentDataArray(targetOverrideArray);
             }
+
+            // Handle Barracks Rally Position
+            entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected, BuildingBarracks, LocalTransform>().Build(entityManager);
+
+            NativeArray<BuildingBarracks> buildingBarracksArray = entityQuery.ToComponentDataArray<BuildingBarracks>(Allocator.Temp);
+            NativeArray<LocalTransform> localTransformArray = entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
+            for (int i = 0; i < buildingBarracksArray.Length; i++)
+            {
+                BuildingBarracks buildingBarracks = buildingBarracksArray[i];
+                buildingBarracks.rallyPositionOffset = (float3)mouseWorldPosition - localTransformArray[i].Position;
+                buildingBarracksArray[i] = buildingBarracks;
+            }
+            entityQuery.CopyFromComponentDataArray(buildingBarracksArray);
         }
     }
 

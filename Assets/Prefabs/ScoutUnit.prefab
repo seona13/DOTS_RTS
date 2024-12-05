@@ -181,6 +181,10 @@ PrefabInstance:
       propertyPath: faction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7529750588027581127, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: unitType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8085540531835963527, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -238,7 +242,7 @@ PrefabInstance:
       insertIndex: 4
       addedObject: {fileID: 4865458090421740474}
     - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
-      insertIndex: 7
+      insertIndex: 9
       addedObject: {fileID: 7555769835015937115}
   m_SourcePrefab: {fileID: 100100000, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
 --- !u!1 &451684142005741863 stripped

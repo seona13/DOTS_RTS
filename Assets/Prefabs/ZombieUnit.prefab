@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: faction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7529750588027581127, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      propertyPath: unitType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8085540531835963527, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -131,14 +135,14 @@ PrefabInstance:
       addedObject: {fileID: 5587701677848979580}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 6093129829551010038}
-    - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
-      insertIndex: 7
+      insertIndex: 6
       addedObject: {fileID: 5807131552850193303}
     - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
-      insertIndex: 8
+      insertIndex: 7
       addedObject: {fileID: 8679817902845936509}
+    - targetCorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
+      insertIndex: 15
+      addedObject: {fileID: 6093129829551010038}
   m_SourcePrefab: {fileID: 100100000, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
 --- !u!4 &1497163728719264079 stripped
 Transform:
@@ -150,18 +154,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5198120190131335635, guid: 54efa35c91918e041b55bc1af8f56d17, type: 3}
   m_PrefabInstance: {fileID: 7274265836426244552}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6093129829551010038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3229095198111973403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d675eafa6d7f87049b6d5b53e607f78e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5807131552850193303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +182,15 @@ MonoBehaviour:
   timerMax: 0.5
   damageAmount: 10
   colliderSize: 0.5
+--- !u!114 &6093129829551010038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229095198111973403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d675eafa6d7f87049b6d5b53e607f78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
